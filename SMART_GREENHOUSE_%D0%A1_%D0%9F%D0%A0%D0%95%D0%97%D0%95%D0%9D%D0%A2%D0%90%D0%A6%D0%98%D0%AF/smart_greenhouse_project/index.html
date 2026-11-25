@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SMART GREENHOUSE – интелигентни решения за по-умно и устойчиво земеделие.">
+  <title>SMART GREENHOUSE | Отглеждайте бъдещето</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #183d2b;
+      --forest-dark: #102b1e;
+      --green: #5d8a55;
+      --sage: #e8efe5;
+      --cream: #f7f6ef;
+      --sand: #e9e2d2;
+      --ink: #233128;
+      --muted: #68766c;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(22, 52, 35, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: #fff; font-family: "DM Sans", sans-serif; line-height: 1.65; }
+    h1,h2,h3,.brand { font-family: "Manrope", sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1140px, calc(100% - 44px)); margin: auto; }
+    .topbar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(24,61,43,.09); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--forest); font-weight: 800; letter-spacing: .04em; font-size: 18px; }
+    .brand-mark { width: 37px; height: 37px; border-radius: 12px 12px 12px 4px; background: var(--forest); color: white; display: grid; place-items: center; font-size: 19px; }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: 13px; font-weight: 700; color: #526258; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta,.button { display: inline-flex; justify-content: center; align-items: center; border-radius: 999px; padding: 12px 21px; background: var(--forest); color: white; font-weight: 700; font-size: 13px; transition: .25s ease; border: 1px solid var(--forest); }
+    .nav-cta:hover,.button:hover { background: var(--green); border-color: var(--green); transform: translateY(-2px); }
+    .menu-toggle { display: none; border: 0; background: var(--sage); color: var(--forest); border-radius: 10px; padding: 9px 12px; font-size: 21px; }
+    .hero { min-height: 620px; display: flex; align-items: center; position: relative; overflow: hidden; background: var(--forest-dark); color: white; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,34,22,.88) 0%, rgba(10,34,22,.68) 42%, rgba(10,34,22,.08) 100%), url("images/greenhouse-hero.webp") center/cover; }
+    .hero-content { position: relative; z-index: 1; padding: 90px 0 100px; max-width: 660px; }
+    .eyebrow { display: inline-flex; gap: 9px; align-items: center; color: #d5e6ce; text-transform: uppercase; letter-spacing: .15em; font-size: 11px; font-weight: 700; }
+    .eyebrow::before { content: ""; width: 27px; height: 1px; background: #b8d2a8; }
+    .hero h1 { font-size: clamp(42px, 6.2vw, 72px); line-height: 1.08; letter-spacing: -.055em; margin: 22px 0; }
+    .hero h1 span { color: #c7dfb9; }
+    .hero p { color: rgba(255,255,255,.83); font-size: 17px; max-width: 520px; margin-bottom: 30px; }
+    .button.light { background: #f5f5ed; color: var(--forest); border-color: #f5f5ed; }
+    .button.light:hover { background: #dce9d5; border-color: #dce9d5; }
+    .hero-note { margin-top: 45px; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.75); font-size: 12px; }
+    .hero-note strong { color: white; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #b9d6a8; box-shadow: 0 0 0 5px rgba(185,214,168,.15); }
+    section { padding: 92px 0; }
+    .section-head { max-width: 650px; margin-bottom: 42px; }
+    .kicker { color: var(--green); text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 800; }
+    h2 { color: var(--forest); font-size: clamp(30px, 4vw, 43px); letter-spacing: -.045em; line-height: 1.17; margin: 12px 0 15px; }
+    .section-head p,.muted { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 65px; }
+    .photo-frame { position: relative; }
+    .photo-frame img { width: 100%; height: 430px; object-fit: cover; border-radius: 7px 90px 7px 7px; box-shadow: var(--shadow); }
+    .photo-tag { position: absolute; right: -18px; bottom: 24px; background: white; padding: 17px 22px; border-radius: 5px; box-shadow: var(--shadow); color: var(--forest); font-weight: 800; font-size: 13px; }
+    .check-list { list-style: none; padding: 0; margin: 25px 0 30px; }
+    .check-list li { margin: 12px 0; display: flex; gap: 12px; align-items: flex-start; color: #536258; }
+    .check { flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--sage); color: var(--forest); display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+    .types { background: var(--cream); }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .card { background: white; border: 1px solid #edf0e9; border-radius: 8px; overflow: hidden; transition: .25s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .card img { width: 100%; height: 215px; object-fit: cover; }
+    .card-body { padding: 24px; }
+    .card h3 { color: var(--forest); margin: 0 0 9px; font-size: 19px; }
+    .card p { color: var(--muted); margin: 0; font-size: 14px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 13px; }
+    .tech-item { padding: 23px 16px; background: #f7f9f5; border-radius: 7px; border: 1px solid #edf1e9; }
+    .tech-icon { width: 42px; height: 42px; display: grid; place-items: center; background: var(--sage); border-radius: 13px; color: var(--forest); font-size: 20px; margin-bottom: 18px; }
+    .tech-item h3 { font-size: 15px; color: var(--forest); margin: 0 0 7px; }
+    .tech-item p { font-size: 12px; color: var(--muted); margin: 0; }
+    .iot { background: var(--forest); color: white; }
+    .iot h2 { color: white; }
+    .iot .section-head p { color: #c9d7cc; }
+    .iot-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; align-items: center; }
+    .iot-photo img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px 70px 8px 8px; }
+    .steps { display: grid; gap: 18px; }
+    .step { display: flex; gap: 17px; padding-bottom: 17px; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .step-num { width: 35px; height: 35px; flex: 0 0 35px; border-radius: 50%; display: grid; place-items: center; background: #d5e7cb; color: var(--forest); font-weight: 800; font-size: 13px; }
+    .step h3 { margin: 0 0 4px; font-size: 16px; }
+    .step p { margin: 0; color: #c9d7cc; font-size: 13px; }
+    .benefits { background: #f7f6ef; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .benefit { background: white; padding: 25px 20px; border-radius: 7px; }
+    .benefit strong { display: block; color: var(--forest); font: 800 30px "Manrope",sans-serif; margin-bottom: 8px; }
+    .benefit span { color: var(--muted); font-size: 13px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr .8fr; grid-template-rows: 205px 205px; gap: 14px; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+    .gallery-grid img:first-child { grid-row: span 2; }
+    .contact { background: var(--sage); }
+    .contact-box { background: white; border-radius: 9px; padding: 45px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .contact-box h2 { margin-top: 0; }
+    .contact-box p { color: var(--muted); margin-bottom: 0; }
+    footer { background: var(--forest-dark); color: #d4ded5; padding: 28px 0; font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .footer-brand { color: white; font-family: "Manrope",sans-serif; font-weight: 800; letter-spacing: .06em; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; font-size: 12px; }
+      .nav-cta { display: none; }
+      .tech-grid { grid-template-columns: repeat(3,1fr); }
+      .benefit-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid,.iot-layout { gap: 35px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 32px, 520px); }
+      .nav { min-height: 67px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 18px 24px 22px; background: white; border-bottom: 1px solid #e8eee7; flex-direction: column; align-items: flex-start; gap: 15px; }
+      .nav-links.open { display: flex; }
+      .hero { min-height: 590px; }
+      .hero::before { background: linear-gradient(90deg, rgba(10,34,22,.88), rgba(10,34,22,.48)), url("images/greenhouse-hero.webp") 58% center/cover; }
+      .hero-content { padding: 75px 0; }
+      .hero p { font-size: 15px; }
+      section { padding: 68px 0; }
+      .about-grid,.iot-layout { grid-template-columns: 1fr; }
+      .photo-frame img { height: 300px; }
+      .photo-tag { right: 10px; }
+      .cards { grid-template-columns: 1fr; }
+      .card img { height: 220px; }
+      .tech-grid { grid-template-columns: repeat(2,1fr); }
+      .iot-photo img { height: 280px; }
+      .gallery-grid { grid-template-rows: 180px 140px; }
+      .contact-box { padding: 28px; align-items: flex-start; flex-direction: column; }
+      .footer-row { flex-direction: column; align-items: flex-start; }
+    }
+
+    .presentation-section { background: #f7f6ef; }
+    .presentation-card { background: #fff; border: 1px solid #e7ece4; border-radius: 10px; padding: 22px; box-shadow: var(--shadow); }
+    .presentation-info { display: flex; align-items: center; gap: 17px; padding: 4px 3px 20px; }
+    .presentation-info h3 { color: var(--forest); font-size: 17px; margin: 0 0 5px; }
+    .presentation-info p { color: var(--muted); font-size: 13px; margin: 0; }
+    .presentation-file-icon { width: 54px; height: 62px; border-radius: 7px; background: #f5e9e5; color: #a84232; display: grid; place-items: center; font: 800 15px "Manrope",sans-serif; flex: 0 0 auto; }
+    .presentation-info .button { margin-left: auto; white-space: nowrap; }
+    .pdf-viewer { height: 690px; border: 1px solid #e2e8df; border-radius: 7px; overflow: hidden; background: #eef1ec; }
+    .pdf-viewer iframe { width: 100%; height: 100%; border: 0; }
+    .pdf-fallback { color: var(--muted); font-size: 12px; margin: 12px 2px 0; }
+    @media(max-width:680px) {
+      .presentation-info { align-items: flex-start; flex-wrap: wrap; }
+      .presentation-info .button { margin-left: 0; }
+      .pdf-viewer { height: 520px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#nachalo"><span class="brand-mark">✳</span> SMART GREENHOUSE</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Отвори меню" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#za-nas">За нас</a><a href="#oranzherii">Оранжерии</a><a href="#tehnologii">Технологии</a><a href="#iot">Как работи IoT</a><a href="#galeria">Галерия</a><a href="#prezentacia">Презентация</a>
+      </nav>
+      <a class="nav-cta" href="#kontakti">Свържете се с нас</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="nachalo">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Земеделие с мисъл за бъдещето</div>
+          <h1>Отглеждайте<br><span>бъдещето</span><br>още днес.</h1>
+          <p>Интелигентни оранжерии, които съчетават природата и технологиите, за да създадат по-добри условия за отглеждане на растения.</p>
+          <a class="button light" href="#tehnologii">Открийте възможностите <span aria-hidden="true">&nbsp;→</span></a>
+          <div class="hero-note"><span class="dot"></span><span><strong>SMART GREENHOUSE</strong> · По-умно земеделие, стъпка по стъпка</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="za-nas">
+      <div class="container about-grid">
+        <div class="photo-frame reveal">
+          <img src="images/greenhouse-interior.webp" alt="Вътрешността на модерна оранжерия с растения и оборудване">
+          <div class="photo-tag">Технологии в хармония с природата</div>
+        </div>
+        <div class="reveal">
+          <div class="kicker">За нашата идея</div>
+          <h2>По-добра грижа за растенията с помощта на технологиите.</h2>
+          <p class="muted">SMART GREENHOUSE е концепция за интелигентна оранжерия, в която сензори и автоматизирани устройства подпомагат ежедневната грижа за растенията.</p>
+          <ul class="check-list">
+            <li><span class="check">✓</span><span>Наблюдение на температурата и влажността.</span></li>
+            <li><span class="check">✓</span><span>По-прецизно използване на водата и енергията.</span></li>
+            <li><span class="check">✓</span><span>Автоматизирани действия според зададени условия.</span></li>
+          </ul>
+          <a class="button" href="#iot">Научете как работи</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="types" id="oranzherii">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Нашите решения</div>
+          <h2>Оранжерии за различни нужди.</h2>
+          <p>Интелигентното управление може да се приложи както в малки пространства, така и в по-големи стопанства.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <img src="images/greenhouse-farm.webp" alt="Модерни стъклени оранжерии сред зелени площи">
+            <div class="card-body"><h3>Модерни стъклени оранжерии</h3><p>Подходящи за контролирана среда и целогодишно отглеждане на различни култури.</p></div>
+          </article>
+          <article class="card reveal">
+            <img src="images/greenhouse-interior.webp" alt="Растения, отглеждани в редове в оранжерия">
+            <div class="card-body"><h3>Оранжерии за зеленчуци</h3><p>Организирано пространство за домати, краставици, салати и други растения.</p></div>
+          </article>
+          <article class="card reveal">
+            <img src="images/greenhouse-hero.webp" alt="Оранжерия с автоматизирано оборудване">
+            <div class="card-body"><h3>Интелигентни стопанства</h3><p>Възможност за свързване на сензори, контролери и системи за автоматизация.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tehnologii">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Интелигентни технологии</div>
+          <h2>Всичко важно за правилната среда.</h2>
+          <p>Системата следи основните условия и подпомага грижата за растенията чрез няколко ключови функции.</p>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-item reveal"><div class="tech-icon">💧</div><h3>Поливане</h3><p>Подаване на вода при ниска влажност на почвата.</p></div>
+          <div class="tech-item reveal"><div class="tech-icon">♨</div><h3>Отопление</h3><p>Поддържане на подходяща температура.</p></div>
+          <div class="tech-item reveal"><div class="tech-icon">↗</div><h3>Вентилация</h3><p>Обмен на въздуха при висока температура.</p></div>
+          <div class="tech-item reveal"><div class="tech-icon">☼</div><h3>Осветление</h3><p>Допълнителна светлина при нужда.</p></div>
+          <div class="tech-item reveal"><div class="tech-icon">✿</div><h3>Торене</h3><p>Подаване на хранителни вещества.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="iot" id="iot">
+      <div class="container">
+        <div class="iot-layout">
+          <div class="iot-photo reveal"><img src="images/greenhouse-interior.webp" alt="Оранжерия с оборудване за наблюдение и управление"></div>
+          <div class="reveal">
+            <div class="kicker" style="color:#c7dfb9">Интернет на нещата · IoT</div>
+            <h2>Как работи интелигентната оранжерия?</h2>
+            <p style="color:#c9d7cc">IoT свързва физически устройства, които събират и обменят информация. Така системата може да реагира на промените в средата.</p>
+            <div class="steps">
+              <div class="step"><span class="step-num">01</span><div><h3>Сензори</h3><p>Измерват температурата, влажността на въздуха и почвата, както и светлината.</p></div></div>
+              <div class="step"><span class="step-num">02</span><div><h3>Контролер</h3><p>Получава данните и ги сравнява със зададените стойности.</p></div></div>
+              <div class="step"><span class="step-num">03</span><div><h3>Изпълнителни устройства</h3><p>Управляват поливането, отоплението, вентилацията и осветлението.</p></div></div>
+              <div class="step"><span class="step-num">04</span><div><h3>Наблюдение</h3><p>Информацията може да се изпраща към компютър или телефон чрез мрежа.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Защо SMART GREENHOUSE?</div>
+          <h2>Малки подобрения. Значими ползи.</h2>
+          <p>Автоматизацията помага на стопаните да следят условията по-лесно и да използват ресурсите по-разумно.</p>
+        </div>
+        <div class="benefit-grid">
+          <div class="benefit reveal"><strong>01</strong><span>По-ефективно използване на водата</span></div>
+          <div class="benefit reveal"><strong>02</strong><span>По-малко ръчни ежедневни задачи</span></div>
+          <div class="benefit reveal"><strong>03</strong><span>Постоянно наблюдение на средата</span></div>
+          <div class="benefit reveal"><strong>04</strong><span>По-добър контрол върху условията</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Галерия</div>
+          <h2>Природа и технологии под един покрив.</h2>
+          <p>Примерни визии на модерни оранжерии и средата, в която растенията се развиват.</p>
+        </div>
+        <div class="gallery-grid reveal">
+          <img src="images/greenhouse-farm.webp" alt="Комплекс от модерни оранжерии в зелена местност">
+          <img src="images/greenhouse-hero.webp" alt="Стъклена оранжерия на фона на зелени хълмове">
+          <img src="images/greenhouse-interior.webp" alt="Зеленчукови растения във вътрешността на оранжерия">
+        </div>
+      </div>
+    </section>
+
+
+    <section id="prezentacia" class="presentation-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Курсов проект по ИКТ</div>
+          <h2>Презентация: Интернет на нещата (IoT)</h2>
+          <p>Разгледайте презентацията към проекта. Тя представя основите на IoT, неговите приложения и практическата идея за интелигентно земеделие.</p>
+        </div>
+        <div class="presentation-card reveal">
+          <div class="presentation-info">
+            <div class="presentation-file-icon">PDF</div>
+            <div>
+              <h3>Интернет на нещата – технологии, приложения и практически възможности</h3>
+              <p>30 слайда · PDF презентация на български език</p>
+            </div>
+            <a class="button" href="prezentacia-iot.pdf" download>Изтегли презентацията ↓</a>
+          </div>
+          <div class="pdf-viewer">
+            <iframe src="prezentacia-iot.pdf#toolbar=1&navpanes=0&view=FitH" title="Презентация SMART GREENHOUSE – Интернет на нещата" loading="lazy"></iframe>
+          </div>
+          <p class="pdf-fallback">Ако презентацията не се визуализира в прозореца, използвайте бутона „Изтегли презентацията“.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="kontakti">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><div class="kicker">Свържете се с нас</div><h2>Нека отглеждаме по-умно.</h2><p>Имате идея или искате да научите повече за интелигентните оранжерии?</p></div>
+          <a class="button" href="mailto:info@smartgreenhouse.example?subject=Запитване%20за%20SMART%20GREENHOUSE">Изпратете запитване&nbsp; →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div class="footer-brand">SMART GREENHOUSE</div>
+      <div>Учебен проект по ИКТ · Интернет на нещата (IoT)</div>
+      <div>© 2026 SMART GREENHOUSE</div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", navLinks.classList.contains("open"));
+    });
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
